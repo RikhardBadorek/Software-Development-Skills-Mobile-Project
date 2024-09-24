@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadGoals();
+        loadLogs();
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -25,18 +27,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void loadLogs() {
+        DailyLogManager.getInstance().loadLogs(this);
+    }
+
+    public void loadGoals() {
+        GoalManager.getInstance().loadGoal(this);
+    }
+
     public void switchToGoals(View view) {
-        Intent intent = new Intent(this, GoalsActivity.class);
+        Intent intent = new Intent(this, UpdateGoalsActivity.class);
         startActivity(intent);
     }
 
-    public void switchToWorkouts(View view) {
-        Intent intent = new Intent(this, WorkoutsActivity.class);
+    public void switchToDailyLog(View view) {
+        Intent intent = new Intent(this, DailyLogActivity.class);
         startActivity(intent);
     }
 
-    public void switchToNutritionAndSleep(View view) {
-        Intent intent = new Intent(this, NutritionAndSleepActivity.class);
+    public void switchToProgress(View view) {
+        Intent intent = new Intent(this, ProgressActivity.class);
         startActivity(intent);
     }
 }

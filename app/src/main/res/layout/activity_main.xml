@@ -31,28 +31,28 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/workoutsBtn"
+        android:id="@+id/dailyLogBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="switchToWorkouts"
-        android:text="Workouts"
+        android:onClick="switchToDailyLog"
+        android:text="Daily Log"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goalsBtn" />
 
     <Button
-        android:id="@+id/nutritionAndSleepBtn"
+        android:id="@+id/progressionBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="switchToNutritionAndSleep"
-        android:text="Nutrition and sleep"
+        android:onClick="switchToProgress"
+        android:text="Progression"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workoutsBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/dailyLogBtn" />
 
     <TextView
         android:id="@+id/textView2"
