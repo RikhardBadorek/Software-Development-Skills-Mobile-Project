@@ -1,5 +1,6 @@
 package com.badorek.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,6 +24,10 @@ public class ProgressActivity extends AppCompatActivity {
 
     private TextView dailyWorkoutTextView;
     private TextView weeklyWorkoutTextView;
+
+    private float waterAverage = 0.0f;
+    private float sleepAverage = 0.0f;
+    private int weeksWorkouts = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +85,7 @@ public class ProgressActivity extends AppCompatActivity {
 
         Goal currentGoal = GoalManager.getInstance().getGoal();
 
-        int weeksWorkouts = 0;
+        weeksWorkouts = 0;
         float weeksWaterIntake = 0.0f;
         float weeksSleep = 0.0f;
 
@@ -90,8 +95,8 @@ public class ProgressActivity extends AppCompatActivity {
             weeksSleep = weeksSleep + log.getSleepHours();
         }
 
-        float waterAverage = weeksWaterIntake / weeklyLogs.size();
-        float sleepAverage = weeksSleep / weeklyLogs.size();
+        waterAverage = weeksWaterIntake / weeklyLogs.size();
+        sleepAverage = weeksSleep / weeklyLogs.size();
 
         TextView workoutsTextView = findViewById(R.id.textViewWorkoutProgressionWeekly);
         ProgressBar waterProgressionBar = findViewById(R.id.progressBarWaterIntakeWeekly);
@@ -126,5 +131,17 @@ public class ProgressActivity extends AppCompatActivity {
         }else {
             dailyWorkoutTextView.setText("No data for today.");
         }
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("waterAverage", waterAverage);
+        intent.putExtra("sleepAverage", sleepAverage);
+        intent.putExtra("weeksWorkouts", weeksWorkouts);
+
+
+        setResult(RESULT_OK, intent);
+
+        super.onBackPressed();
     }
 }

@@ -51,7 +51,7 @@ public class GoalManager {
         }
     }
 
-    public void clearGoal() {
+    public void deleteGoals() {
         goal = null;
     }
 }

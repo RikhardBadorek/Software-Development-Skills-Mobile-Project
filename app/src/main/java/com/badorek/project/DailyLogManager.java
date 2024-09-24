@@ -91,4 +91,8 @@ public class DailyLogManager {
         }
         return null;
     }
+
+    public void deleteLogs() {
+        dailyLogs.clear();
+    }
 }
