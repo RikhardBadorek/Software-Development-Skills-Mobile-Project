@@ -132,6 +132,9 @@ public class ProgressActivity extends AppCompatActivity {
             dailyWorkoutTextView.setText("No data for today.");
         }
     }
+
+    //https://developer.android.com/guide/navigation/navigation-custom-back
+    //Reference
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();

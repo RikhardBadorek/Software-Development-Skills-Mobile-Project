@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //https://developer.android.com/training/basics/intents/result
+    //Reference
     public void switchToProgress(View view) {
         Intent intent = new Intent(this, ProgressActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
@@ -57,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
-
+    //https://stackoverflow.com/questions/20114485/use-onactivityresult-android
+    //Reference
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
