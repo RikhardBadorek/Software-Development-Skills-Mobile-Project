@@ -63,33 +63,34 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && data != null) {
-            float waterAverage = data.getFloatExtra("waterAverage", 0.0f);
-            float sleepAverage = data.getFloatExtra("sleepAverage", 0.0f);
-            int weeksWorkouts = data.getIntExtra("weeksWorkouts", 0);
-
+            float waterAverage = data.hasExtra("waterAverage") ? data.getFloatExtra("waterAverage", 0.0f) : 0.0f;
+            float sleepAverage = data.hasExtra("sleepAverage") ? data.getFloatExtra("sleepAverage", 0.0f) : 0.0f;
+            int weeksWorkouts = data.hasExtra("weeksWorkouts") ? data.getIntExtra("weeksWorkouts", 0) : 0;
 
             TextView quote = findViewById(R.id.textViewMainPageQuote);
 
             StringBuilder fullQuote = new StringBuilder();
 
-            if (waterAverage < GoalManager.getInstance().getGoal().getWaterGoal()*0.6) {
-                fullQuote.append("Keep drinking more water, you'll feel better!!\n");
-            }
-            if (sleepAverage < GoalManager.getInstance().getGoal().getSleepGoal()*0.6) {
-                fullQuote.append("Make sure to get some quality sleep!!\n");
-            }
-            if (weeksWorkouts < GoalManager.getInstance().getGoal().getWorkoutGoal()){
-                fullQuote.append("Keep working out still some work to do for the week!!\n");
-            }
+            Goal currentGoal = GoalManager.getInstance().getGoal();
+            if (currentGoal != null) {
+                if (waterAverage < currentGoal.getWaterGoal() * 0.6) {
+                    fullQuote.append("Keep drinking more water, you'll feel better!!\n");
+                }
+                if (sleepAverage < currentGoal.getSleepGoal() * 0.6) {
+                    fullQuote.append("Make sure to get some quality sleep!!\n");
+                }
+                if (weeksWorkouts < currentGoal.getWorkoutGoal()) {
+                    fullQuote.append("Keep working out, still some work to do for the week!!\n");
+                }
 
-            if(fullQuote.length() > 0) {
-                quote.setText(fullQuote.toString());
-            } else {
-                quote.setText("Amazing job! Stay on track with your goals!");
+                if (fullQuote.length() > 0) {
+                    quote.setText(fullQuote.toString());
+                } else {
+                    quote.setText("Amazing job! Stay on track with your goals!");
+                }
+            }else {
+                quote.setText("Keep track of your progress and get after it!!");
             }
         }
-
-
-
     }
 }
